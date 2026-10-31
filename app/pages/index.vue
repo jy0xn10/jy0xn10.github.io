@@ -177,8 +177,8 @@ onMounted(() => {
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    width: 55%;
-    max-width: 800px;
+    width: 60%;
+    max-width: 1000px;
     height: 100%;
     min-height: calc(100vh - 50px);
     background-color: white;
