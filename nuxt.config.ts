@@ -6,5 +6,8 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/', 
   },
+  nitro: {
+    preset: 'static'
+  },
   css: ['~/assets/css/main.css']
 })
