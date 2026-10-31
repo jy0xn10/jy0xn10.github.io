@@ -1,0 +1,1 @@
+import{I as e,N as t,f as n,t as r}from"./BgiBRhsh.js";var i={},a={class:`layout`};function o(r,i){return t(),n(`div`,a,[e(r.$slots,`default`,{},void 0,!0)])}var s=r(i,[[`render`,o],[`__scopeId`,`data-v-31ebad68`]]);export{s as default};
