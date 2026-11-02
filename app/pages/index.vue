@@ -12,21 +12,40 @@ const form = ref({
 })
 const isSubmitting = ref(false)
 
+const getKSTDateString = () => {
+  const now = new Date();
+  const kstOffset = 9 * 60;
+  const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+  const kstDate = new Date(utc + (kstOffset * 60000));
+  
+  const year = kstDate.getFullYear();
+  const month = String(kstDate.getMonth() + 1).padStart(2, '0');
+  const day = String(kstDate.getDate()).padStart(2, '0');
+  
+  return `${year}-${month}-${day}`;
+};
+
 const updateAndGetVisitorCount = async () => {
   if (!$db) return
 
-  const today = new Date().toISOString().slice(0, 10)
-  const counterRef = doc($db, 'counters', today)
+  const todayStr = getKSTDateString()
+  const todayRef = doc($db, 'visitors', todayStr)
+  const totalRef = doc($db, 'visitors', 'total')
 
   try {
-    await setDoc(counterRef, { count: increment(1) }, { merge: true })
+    await setDoc(todayRef, { count: increment(1) }, { merge: true })
+    const todaySnap = await getDoc(todayRef)
+    if (todaySnap.exists()) {
+      todayCount.value = todaySnap.data().count
+    }
 
-    const snap = await getDoc(counterRef)
-    if (snap.exists()) {
-      visitorCount.value = snap.data().count
+    await setDoc(totalRef, { count: increment(1) }, { merge: true })
+    const totalSnap = await getDoc(totalRef)
+    if (totalSnap.exists()) {
+      totalCount.value = totalSnap.data().count
     }
   } catch (error) {
-    console.error("카운터 업데이트 실패:", error)
+    console.error("방문자 카운터 업데이트 실패:", error)
   }
 }
 
@@ -111,7 +130,7 @@ onMounted(() => {
                         </ul>
                     </div>
                     <div class="visitor-counter">
-                        <span>방문자 수: {{ visitorCount }}</span>
+                        <span>오늘 방문자: {{ visitorCount }}</span>
                     </div>
                     <div class="guestbook">
                         <h5>방명록</h5>
