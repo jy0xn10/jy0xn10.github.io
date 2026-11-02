@@ -4,7 +4,9 @@ import { doc, getDoc, setDoc, increment, collection, addDoc, getDocs, query, ord
 
 const { $db } = useNuxtApp()
 
-const visitorCount = ref(0)
+const todayCount = ref(0)
+const totalCount = ref(0)
+
 const guestbookList = ref([])
 const form = ref({
   nickname: '',
@@ -130,7 +132,7 @@ onMounted(() => {
                         </ul>
                     </div>
                     <div class="visitor-counter">
-                        <span>오늘 방문자: {{ visitorCount }}</span>
+                        <span>TODAY {{ todayCount }} | TOTAL {{ totalCount }}</span>
                     </div>
                     <div class="guestbook">
                         <h5>방명록</h5>
