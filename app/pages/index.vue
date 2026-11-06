@@ -112,6 +112,12 @@ onMounted(() => {
                         <h5>Social</h5>
                         <ul>
                             <li>
+                                <a href="https://blog.naver.com/y0jxn_" target="_blank" rel="noopener noreferrer">
+                                    <img src="https://cdn.simpleicons.org/naver/03C75A" alt="Blog" class="icon" />
+                                    <span>Blog</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="https://x.com/ryuonni10" target="_blank" rel="noopener noreferrer">
                                     <img src="https://cdn.simpleicons.org/x/000000" alt="X" class="icon" />
                                     <span>X</span>
